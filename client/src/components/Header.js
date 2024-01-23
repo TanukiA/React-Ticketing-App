@@ -39,7 +39,7 @@ function Header() {
       </div>
       <div className="right-section">
         <nav>
-          {user ? (
+          {user.name ? (
             <>
               <button onClick={(e)=> handleSignOut(e)}>Sign out</button>
                 <div>
