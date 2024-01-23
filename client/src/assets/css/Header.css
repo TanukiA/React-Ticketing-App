@@ -1,0 +1,19 @@
+.Head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+}
+
+.left-section,
+.right-section {
+    display: flex;
+    align-items: center;
+}
+  
+nav {
+    display: flex;
+    align-items: center;
+}

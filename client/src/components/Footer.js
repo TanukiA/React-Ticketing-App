@@ -1,11 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className="App-footer">
+    <footer>
       <nav>
-        <Link to="/contact">Contact Us</Link>
+        <p>Contact Us</p>
       </nav>
     </footer>
   );

@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
+function CustomerHome(){
+
+}
+
+export default CustomerHome;
 /*
     <div className="App">
       <div id="signInDiv"></div>
