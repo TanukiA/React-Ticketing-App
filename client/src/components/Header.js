@@ -13,8 +13,19 @@ function Header() {
     setUser(userObject);
   }
 
-  function handleSignOut(e){
-    setUser({});
+  function handleSignOut(){
+    setUser(null);
+    // re-render sign in button
+    renderSignInButton();
+  }
+
+  function renderSignInButton(){
+    google.accounts.id.renderButton(
+      document.getElementById("signInDiv"),
+      { theme: "outline", size: "large"}
+    );
+
+    google.accounts.id.prompt();
   }
 
   useEffect(() => {
@@ -24,12 +35,7 @@ function Header() {
       callback: handleCallbackResponse
     });
 
-    google.accounts.id.renderButton(
-      document.getElementById("signInDiv"),
-      { theme: "outline", size: "large"}
-    );
-
-    google.accounts.id.prompt();
+    renderSignInButton();
   }, []);
 
   return(
@@ -39,16 +45,17 @@ function Header() {
       </div>
       <div className="right-section">
         <nav>
-          {user.name ? (
+          {user && user.name ? (
             <>
-              <button onClick={(e)=> handleSignOut(e)}>Sign out</button>
+              <button onClick={handleSignOut}>Sign out</button>
                 <div>
-                  <img src={user.picture} alt="user pic"></img>
-                  <h3>{user.name}</h3>
+                  <p>Signed in with: <br/>{user.name}</p>
                 </div>
             </>
           ) : (
-            <div id="signInDiv"></div>
+            <>
+              <div id="signInDiv"></div>
+            </>
           )}
         </nav>
       </div>
