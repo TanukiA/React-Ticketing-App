@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
 function CustomerHome(){
-  
+  return(
+    <div>test home</div>
+  );
 }
 
 export default CustomerHome;
