@@ -11,21 +11,17 @@ function Header() {
     console.log("Encoded JWT ID token: " + response.credential);
     var userObject = jwtDecode(response.credential);
     setUser(userObject);
+    document.getElementById("signInDiv").hidden = true;
   }
 
   function handleSignOut(){
     setUser(null);
     // re-render sign in button
-    renderSignInButton();
-  }
-
-  function renderSignInButton(){
     google.accounts.id.renderButton(
       document.getElementById("signInDiv"),
       { theme: "outline", size: "large"}
     );
-
-    google.accounts.id.prompt();
+    document.getElementById("signInDiv").hidden = false;
   }
 
   useEffect(() => {
@@ -35,7 +31,13 @@ function Header() {
       callback: handleCallbackResponse
     });
 
-    renderSignInButton();
+    google.accounts.id.renderButton(
+      document.getElementById("signInDiv"),
+      { theme: "outline", size: "large"}
+    );
+
+    google.accounts.id.prompt();
+
   }, []);
 
   return(
@@ -45,18 +47,16 @@ function Header() {
       </div>
       <div className="right-section">
         <nav>
-          {user && user.name ? (
-            <>
-              <button onClick={handleSignOut}>Sign out</button>
-                <div>
-                  <p>Signed in with: <br/>{user.name}</p>
-                </div>
-            </>
-          ) : (
-            <>
-              <div id="signInDiv"></div>
-            </>
-          )}
+        <div id="signInDiv"></div>
+        {user && Object.keys(user).length != 0 && (
+          <>
+            <button onClick={handleSignOut}>Sign out</button>
+              <div>
+                <p>Signed in with: <br/>{user.name}</p>
+              </div>
+          </>
+          ) 
+        }
         </nav>
       </div>
     </header>
