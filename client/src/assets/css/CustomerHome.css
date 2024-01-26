@@ -1,0 +1,38 @@
+.image-container {
+    display: flex;
+    justify-content: center;
+    height: auto;
+    width: 100%;
+}
+
+.date-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.date-container button {
+    padding: 5px 10px;
+    border: 1px solid #adadad;
+    background-color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 8px;
+}
+
+.date-container button:hover {
+    background-color: #f0f0f0;
+}
+  
+.date-container span {
+    font-size: 17px;
+    margin: 20px;
+}
+
+.react-datepicker-wrapper,
+.react-datepicker__input-container,
+.react-datepicker__month-container {
+  font-size: 14px;
+  padding: 10px;
+}

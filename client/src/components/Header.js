@@ -16,12 +16,11 @@ function Header() {
 
   function handleSignOut(){
     setUser(null);
-    // re-render sign in button
-    google.accounts.id.renderButton(
-      document.getElementById("signInDiv"),
-      { theme: "outline", size: "large"}
-    );
+
+    // Reset Google auth state
+    google.accounts.id.disableAutoSelect();
     document.getElementById("signInDiv").hidden = false;
+
   }
 
   useEffect(() => {
@@ -48,13 +47,11 @@ function Header() {
       <div className="right-section">
         <nav>
         <div id="signInDiv"></div>
-        {user && Object.keys(user).length != 0 && (
-          <>
-            <button onClick={handleSignOut}>Sign out</button>
-              <div>
-                <p>Signed in with: <br/>{user.name}</p>
-              </div>
-          </>
+        {user && Object.keys(user).length !== 0 && (
+          <div id="user-details">
+            <button onClick={handleSignOut} className="signout-btn">Sign out</button>
+            <p>Signed in as: <br/>{user.name}</p>
+          </div>
           ) 
         }
         </nav>
