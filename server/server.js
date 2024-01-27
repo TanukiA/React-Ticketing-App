@@ -1,8 +1,14 @@
 const express = require('express');
-const app = express();
+var cors = require('cors');
+const bodyParser = require('body-parser');
+const customerRoutes = require('./routes/customer'); 
+const adminRoutes = require('./routes/admin');
 
-app.get('/api/myticket', (req, res) => {
-    res.json({ message: 'My Ticket page!' });
-});
+const app = express();
+app.use(cors());
+app.use(bodyParser.json());
+
+app.use('/api', customerRoutes);
+app.use('/api', adminRoutes);
 
 app.listen(5000, () => {console.log("Server started on port 5000")})

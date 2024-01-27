@@ -17,9 +17,9 @@ function CustomerHome(){
 }
 
 function DateSelector(){
-  // Set default date (today or the start of the range if today is outside the range)
   const startDate = new Date('2024-01-01');
   const endDate = new Date('2024-02-25');
+  // Set default date (today or the start of the range if today is outside the range)
   const defaultDate = new Date() < startDate ? startDate : new Date();
 
   const [selectedDate, setSelectedDate] = useState(defaultDate);
@@ -43,9 +43,15 @@ function DateSelector(){
       <button onClick={() => handleArrowChange(-1)}>&lt;</button>
       <span style={{fontWeight: 'bold'}}>{selectedDate.toDateString()}</span>
       <button onClick={() => handleArrowChange(1)}>&gt;</button>
-      <DatePicker selected={selectedDate} onChange={handleDateChange}  minDate={startDate} maxDate={endDate}/>
+      <DatePicker selected={selectedDate} onChange={handleDateChange} minDate={startDate} maxDate={endDate}/>
     </div>
   );
 };
+
+function TicketListing(){
+  return(
+    <div></div>
+  );
+}
 
 export default CustomerHome;
