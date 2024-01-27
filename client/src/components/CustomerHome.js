@@ -8,7 +8,8 @@ function CustomerHome(){
   return(
     <span>
       <div className="image-container">
-        <img alt="Expo Pic" src={expoPic} width="1200" height="260"/>
+        <img alt="Expo Pic" src={expoPic} width="1280" height="270"/>
+        <div className="image-text">DigitalExpo at ABC Exhibition Centre<br/>1/1/2024 - 25/2/2024</div>
       </div>
       <DateSelector/>
     </span>
@@ -16,8 +17,12 @@ function CustomerHome(){
 }
 
 function DateSelector(){
-  // Set default date (today)
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  // Set default date (today or the start of the range if today is outside the range)
+  const startDate = new Date('2024-01-01');
+  const endDate = new Date('2024-02-25');
+  const defaultDate = new Date() < startDate ? startDate : new Date();
+
+  const [selectedDate, setSelectedDate] = useState(defaultDate);
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -26,16 +31,19 @@ function DateSelector(){
   const handleArrowChange = (offset) => {
     const newDate = new Date(selectedDate);
     newDate.setDate(newDate.getDate() + offset);
-    setSelectedDate(newDate);
+    // Ensure the new date is within the exhibition period
+    if (newDate >= startDate && newDate <= endDate) {
+      setSelectedDate(newDate);
+    }
   };
 
   return (
     <div className="date-container">
-      <span>Book your ticket for:</span>
+      <span>Book ticket now:</span>
       <button onClick={() => handleArrowChange(-1)}>&lt;</button>
       <span style={{fontWeight: 'bold'}}>{selectedDate.toDateString()}</span>
       <button onClick={() => handleArrowChange(1)}>&gt;</button>
-      <DatePicker selected={selectedDate} onChange={handleDateChange} />
+      <DatePicker selected={selectedDate} onChange={handleDateChange}  minDate={startDate} maxDate={endDate}/>
     </div>
   );
 };
