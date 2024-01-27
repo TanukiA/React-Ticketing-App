@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../db/database');
 
-router.get('/home', async (req, res) => {
+router.get('/ticket-listing', async (req, res) => {
     try {
         const [rows] = await pool.query('SELECT * FROM TicketListing');
         res.json(rows);
@@ -12,7 +12,7 @@ router.get('/home', async (req, res) => {
     }
 });
 
-router.get('/myticket', async (req, res) => {
+router.get('/tickets', async (req, res) => {
     res.json({ message: 'My Ticket page!' });
 });
 

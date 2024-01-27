@@ -9,6 +9,6 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use('/api', customerRoutes);
-app.use('/api', adminRoutes);
+//app.use('/api', adminRoutes);
 
 app.listen(5000, () => {console.log("Server started on port 5000")})

@@ -3,8 +3,18 @@ import expoPic from '../assets/img/expo-cover.jpg';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../assets/css/CustomerHome.css';
+import axios from 'axios';
 
 function CustomerHome(){
+
+  const [ ticketData, setTicketData ] = useState({});
+
+  useEffect(() => {
+    axios.get('/api/ticket-listing')
+      .then(response => setTicketData(response.data))
+      .catch(error => console.log(error));
+  }, []);
+
   return(
     <span>
       <div className="image-container">
